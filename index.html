@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfólio | Analista de BI</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --dark: #111110;
+    --dark2: #1a1a18;
+    --dark3: #242420;
+    --accent: #E8854A;
+    --accent2: #f0a070;
+    --light: #f5f4f0;
+    --light2: #edecea;
+    --muted: #888880;
+    --white: #ffffff;
+    --text-dark: #1a1a18;
+    --text-muted: #666660;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 1.2rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(17,17,16,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--dark);
+    display: flex; align-items: center;
+    padding: 6rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(232,133,74,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,133,74,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  .hero-glow {
+    position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(232,133,74,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; max-width: 700px; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(232,133,74,0.12);
+    border: 1px solid rgba(232,133,74,0.3);
+    color: var(--accent2);
+    font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 100px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-tag::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--accent); border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  h1.hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 800; line-height: 1.05;
+    letter-spacing: -0.02em;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+  h1.hero-title span { color: var(--accent); }
+  .hero-sub {
+    margin-top: 1.5rem;
+    font-size: 1.1rem; color: rgba(255,255,255,0.55);
+    line-height: 1.7; max-width: 520px;
+    font-weight: 300;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+  .hero-ctas {
+    margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--accent); color: var(--dark);
+    padding: 0.85rem 2rem; border-radius: 8px;
+    font-weight: 600; font-size: 0.9rem;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    transition: transform 0.2s, background 0.2s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: rgba(255,255,255,0.8);
+    padding: 0.85rem 2rem; border-radius: 8px;
+    font-weight: 500; font-size: 0.9rem;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  .hero-stats {
+    margin-top: 4rem; display: flex; gap: 3rem;
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+  .hero-stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem; font-weight: 800; color: var(--accent);
+  }
+  .hero-stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.45); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ── SOBRE MIM ── */
+  #sobre {
+    background: var(--light);
+    padding: 6rem 3rem;
+    color: var(--text-dark);
+  }
+  .section-label {
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800; color: var(--text-dark);
+    line-height: 1.1;
+  }
+  .sobre-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    margin-top: 3rem; align-items: start;
+  }
+  .sobre-text p {
+    font-size: 1rem; line-height: 1.8; color: var(--text-muted);
+    margin-bottom: 1.2rem;
+  }
+  .sobre-text p strong { color: var(--text-dark); font-weight: 500; }
+  .skills-grid {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+  .skill-tag {
+    background: var(--dark); color: var(--light);
+    padding: 6px 14px; border-radius: 6px;
+    font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+  .skill-tag.accent { background: var(--accent); color: var(--dark); }
+
+  .sobre-right { display: flex; flex-direction: column; gap: 1.2rem; }
+  .sobre-card {
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 12px; padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .sobre-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+  .sobre-card-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: rgba(232,133,74,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; margin-bottom: 0.8rem;
+  }
+  .sobre-card h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text-dark); }
+  .sobre-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-top: 4px; }
+
+  /* ── PROJETOS ── */
+  #projetos {
+    background: var(--light2);
+    padding: 6rem 3rem;
+    color: var(--text-dark);
+  }
+  .projetos-header { max-width: 600px; margin-bottom: 3.5rem; }
+  .projetos-header p { margin-top: 1rem; color: var(--text-muted); line-height: 1.7; }
+
+  .projetos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .projeto-card {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+  }
+  .projeto-card:hover { transform: translateY(-5px); box-shadow: 0 20px 48px rgba(0,0,0,0.1); }
+
+  .projeto-preview {
+    height: 220px;
+    position: relative; overflow: hidden;
+    background: var(--dark2);
+  }
+  .projeto-preview canvas { width: 100%; height: 100%; }
+  .projeto-overlay {
+    position: absolute; inset: 0;
+    background: rgba(17,17,16,0.6);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .projeto-card:hover .projeto-overlay { opacity: 1; }
+  .overlay-btn {
+    background: var(--accent); color: var(--dark);
+    padding: 10px 24px; border-radius: 8px;
+    font-weight: 600; font-size: 0.85rem;
+    border: none; cursor: pointer;
+    transform: translateY(10px); transition: transform 0.25s;
+  }
+  .projeto-card:hover .overlay-btn { transform: translateY(0); }
+
+  .projeto-badge {
+    position: absolute; top: 12px; left: 12px;
+    background: rgba(232,133,74,0.9);
+    color: var(--dark); font-size: 0.7rem; font-weight: 700;
+    padding: 4px 10px; border-radius: 100px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+
+  .projeto-body { padding: 1.4rem; }
+  .projeto-body h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem; font-weight: 700; color: var(--text-dark);
+  }
+  .projeto-body p {
+    margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;
+  }
+  .projeto-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+  .projeto-tag {
+    background: var(--light2); color: var(--text-muted);
+    font-size: 0.72rem; font-weight: 500; padding: 4px 10px;
+    border-radius: 6px; letter-spacing: 0.03em;
+  }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 1000;
+    background: rgba(0,0,0,0.75); backdrop-filter: blur(4px);
+    align-items: center; justify-content: center; padding: 2rem;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--white); border-radius: 20px;
+    width: 100%; max-width: 900px;
+    max-height: 90vh; overflow-y: auto;
+    position: relative;
+  }
+  .modal-close {
+    position: absolute; top: 1.2rem; right: 1.2rem;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--light2); border: none; cursor: pointer;
+    font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted); transition: background 0.2s;
+  }
+  .modal-close:hover { background: #ddd; }
+  .modal-header { padding: 2rem 2rem 1rem; border-bottom: 1px solid rgba(0,0,0,0.06); }
+  .modal-header h2 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--text-dark); }
+  .modal-header p { color: var(--text-muted); margin-top: 0.4rem; font-size: 0.9rem; }
+  .modal-body { padding: 1.5rem 2rem 2rem; }
+  .modal-chart-area {
+    background: var(--dark); border-radius: 12px;
+    padding: 1.5rem; margin-bottom: 1.5rem;
+    height: 320px; position: relative;
+  }
+  .modal-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+  .modal-kpi { background: var(--light); border-radius: 10px; padding: 1rem; text-align: center; }
+  .modal-kpi-val { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--accent); }
+  .modal-kpi-label { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .modal-placeholder-msg {
+    background: rgba(232,133,74,0.08); border: 1px dashed rgba(232,133,74,0.4);
+    border-radius: 10px; padding: 1rem 1.25rem;
+    font-size: 0.85rem; color: var(--accent); line-height: 1.6;
+  }
+  .modal-placeholder-msg strong { color: var(--text-dark); }
+
+  /* ── CONTATO ── */
+  #contato {
+    background: var(--dark);
+    padding: 6rem 3rem;
+    text-align: center;
+  }
+  #contato .section-title { color: var(--white); }
+  #contato p { color: rgba(255,255,255,0.5); margin-top: 1rem; font-size: 1rem; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+  .contato-links { display: flex; justify-content: center; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; }
+  .contato-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 0.85rem 1.8rem; border-radius: 10px;
+    font-weight: 500; font-size: 0.9rem;
+    text-decoration: none; transition: transform 0.2s;
+  }
+  .contato-link:hover { transform: translateY(-2px); }
+  .contato-link.linkedin { background: #0A66C2; color: #fff; }
+  .contato-link.email { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.8); border: 1px solid rgba(255,255,255,0.12); }
+
+  footer {
+    background: var(--dark2); border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 2rem 3rem; text-align: center;
+    font-size: 0.8rem; color: rgba(255,255,255,0.25);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">BI.Portfolio</div>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Disponível para Freelance</div>
+    <h1 class="hero-title">
+      Dados que<br>
+      <span>geram decisão.</span>
+    </h1>
+    <p class="hero-sub">
+      Analista de BI transformando dados complexos em dashboards claros, interativos e acionáveis. Especialidade em SQL, Power BI e Python.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projetos" class="btn-primary">Ver projetos →</a>
+      <a href="#contato" class="btn-outline">Entrar em contato</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">5+</div>
+        <div class="hero-stat-label">Dashboards criados</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">3</div>
+        <div class="hero-stat-label">Ferramentas dominadas</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-label">Foco em resultados</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MIM -->
+<section id="sobre">
+  <div class="section-label">Sobre mim</div>
+  <div class="sobre-grid">
+    <div class="sobre-text">
+      <h2 class="section-title">De operações ao negócio — com dados.</h2>
+      <p style="margin-top:1.2rem">
+        Tenho experiência prática como <strong>Analista Operacional</strong>, o que me deu visão do chão de fábrica: processos, gargalos, dados na prática. Agora estou direcionando essa vivência para o mundo de <strong>Business Intelligence e Análise de Negócios</strong>.
+      </p>
+      <p>
+        Trabalho com <strong>SQL, Power BI e Python</strong> — coleta, tratamento, modelagem e visualização de dados. Meu diferencial é entender o problema do negócio antes de abrir qualquer ferramenta.
+      </p>
+      <p>
+        Busco projetos onde dados <strong>realmente mudem decisões</strong> — relatórios que saem do slide e viram ação.
+      </p>
+      <div class="skills-grid">
+        <span class="skill-tag accent">Power BI</span>
+        <span class="skill-tag accent">SQL</span>
+        <span class="skill-tag accent">Python</span>
+        <span class="skill-tag">ETL</span>
+        <span class="skill-tag">DAX</span>
+        <span class="skill-tag">Modelagem de Dados</span>
+        <span class="skill-tag">Storytelling com Dados</span>
+        <span class="skill-tag">Excel Avançado</span>
+      </div>
+    </div>
+    <div class="sobre-right">
+      <div class="sobre-card">
+        <div class="sobre-card-icon">📊</div>
+        <h3>Dashboards interativos</h3>
+        <p>Criação de painéis com filtros dinâmicos, drill-down e KPIs relevantes para cada perfil de usuário.</p>
+      </div>
+      <div class="sobre-card">
+        <div class="sobre-card-icon">🔍</div>
+        <h3>Análise de negócio</h3>
+        <p>Mapeamento de processos, identificação de gargalos e oportunidades com base em dados históricos e preditivos.</p>
+      </div>
+      <div class="sobre-card">
+        <div class="sobre-card-icon">⚙️</div>
+        <h3>Pipeline de dados</h3>
+        <p>Extração, transformação e carga (ETL) de fontes diversas para um modelo analítico confiável.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETOS -->
+<section id="projetos">
+  <div class="projetos-header">
+    <div class="section-label">Portfólio</div>
+    <h2 class="section-title">Projetos em destaque</h2>
+    <p>Clique em um projeto para explorar o dashboard interativo com dados fictícios criados para demonstração.</p>
+  </div>
+  <div class="projetos-grid" id="projetos-grid"></div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-header">
+      <h2 id="modal-title"></h2>
+      <p id="modal-desc"></p>
+    </div>
+    <div class="modal-body">
+      <div class="modal-kpis" id="modal-kpis"></div>
+      <div class="modal-chart-area">
+        <canvas id="modal-canvas" style="width:100%;height:100%"></canvas>
+      </div>
+      <div class="modal-placeholder-msg">
+        <strong>📌 Nota:</strong> Este é um layout de demonstração com dados fictícios. Em breve este painel será substituído pelo dashboard real publicado no Power BI — totalmente interativo com filtros, drill-down e relatórios completos.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="section-label">Vamos conversar</div>
+  <h2 class="section-title">Pronto para trabalharmos juntos?</h2>
+  <p>Tenho disponibilidade para projetos freelance de análise de dados, criação de dashboards e consultoria em BI.</p>
+  <div class="contato-links">
+    <a href="https://linkedin.com" target="_blank" class="contato-link linkedin">LinkedIn →</a>
+    <a href="mailto:seuemail@email.com" class="contato-link email">Enviar e-mail</a>
+  </div>
+</section>
+
+<footer>
+  Portfólio criado para demonstração · Substitua com seus dados reais antes de publicar
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script>
+const projetos = [
+  {
+    id: 'vendas',
+    area: 'Vendas',
+    title: 'Dashboard de Vendas',
+    desc: 'Análise de performance comercial com acompanhamento de metas, ticket médio e funil de conversão.',
+    tags: ['Power BI', 'SQL', 'DAX'],
+    kpis: [
+      { val: 'R$ 2,4M', label: 'Receita Total' },
+      { val: '847', label: 'Pedidos' },
+      { val: 'R$ 2.836', label: 'Ticket Médio' },
+      { val: '94%', label: 'Meta atingida' }
+    ],
+    chartType: 'bar',
+    chartData: {
+      labels: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago'],
+      datasets: [
+        { label: 'Realizado', data: [210,245,198,320,280,310,295,340], backgroundColor: '#E8854A', borderRadius: 6 },
+        { label: 'Meta', data: [240,240,240,300,300,300,300,360], backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: 6 }
+      ]
+    }
+  },
+  {
+    id: 'financeiro',
+    area: 'Financeiro',
+    title: 'Análise Financeira',
+    desc: 'Visão consolidada de receitas, despesas, margem e fluxo de caixa para apoio à gestão financeira.',
+    tags: ['Power BI', 'Python', 'Excel'],
+    kpis: [
+      { val: 'R$ 3,1M', label: 'Receita Bruta' },
+      { val: '28%', label: 'Margem Líquida' },
+      { val: 'R$ 420K', label: 'EBITDA' },
+      { val: '12%', label: 'Crescimento YoY' }
+    ],
+    chartType: 'line',
+    chartData: {
+      labels: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+      datasets: [
+        { label: 'Receita', data: [280,290,265,310,325,340,355,380,370,390,410,430], borderColor: '#E8854A', backgroundColor: 'rgba(232,133,74,0.1)', tension: 0.4, fill: true, pointRadius: 4 },
+        { label: 'Despesas', data: [210,215,200,225,240,245,255,270,265,275,290,300], borderColor: 'rgba(255,255,255,0.4)', backgroundColor: 'transparent', tension: 0.4, pointRadius: 4 }
+      ]
+    }
+  },
+  {
+    id: 'logistica',
+    area: 'Logística',
+    title: 'Indicadores de Logística',
+    desc: 'Controle de entregas, SLA, rotas e eficiência operacional para tomada de decisão em tempo real.',
+    tags: ['Power BI', 'SQL', 'DAX'],
+    kpis: [
+      { val: '97,2%', label: 'SLA no prazo' },
+      { val: '4,1d', label: 'Lead time médio' },
+      { val: '1.240', label: 'Entregas/mês' },
+      { val: '2,3%', label: 'Taxa de devol.' }
+    ],
+    chartType: 'doughnut',
+    chartData: {
+      labels: ['No prazo', 'Atrasado', 'Em trânsito', 'Devolvido'],
+      datasets: [{
+        data: [68, 15, 13, 4],
+        backgroundColor: ['#E8854A', 'rgba(255,255,255,0.15)', 'rgba(255,255,255,0.3)', 'rgba(232,133,74,0.35)'],
+        borderWidth: 0,
+        hoverOffset: 8
+      }]
+    }
+  },
+  {
+    id: 'rh',
+    area: 'RH',
+    title: 'People Analytics',
+    desc: 'Dados de headcount, turnover, absenteísmo e performance para gestão estratégica de pessoas.',
+    tags: ['Power BI', 'Python', 'SQL'],
+    kpis: [
+      { val: '342', label: 'Headcount' },
+      { val: '8,4%', label: 'Turnover anual' },
+      { val: '96%', label: 'Satisfação' },
+      { val: '4,2%', label: 'Absenteísmo' }
+    ],
+    chartType: 'bar',
+    chartData: {
+      labels: ['TI','Comercial','Operações','Financeiro','RH','Marketing'],
+      datasets: [
+        { label: 'Headcount', data: [45, 82, 110, 38, 22, 45], backgroundColor: 'rgba(232,133,74,0.7)', borderRadius: 6 }
+      ]
+    }
+  }
+];
+
+// Render project cards with mini charts
+const grid = document.getElementById('projetos-grid');
+projetos.forEach(p => {
+  const card = document.createElement('div');
+  card.className = 'projeto-card';
+  card.innerHTML = `
+    <div class="projeto-preview">
+      <canvas id="mini-${p.id}" style="width:100%;height:100%"></canvas>
+      <span class="projeto-badge">${p.area}</span>
+      <div class="projeto-overlay"><button class="overlay-btn" onclick="openModal('${p.id}')">Explorar dashboard →</button></div>
+    </div>
+    <div class="projeto-body">
+      <h3>${p.title}</h3>
+      <p>${p.desc}</p>
+      <div class="projeto-tags">${p.tags.map(t=>`<span class="projeto-tag">${t}</span>`).join('')}</div>
+    </div>
+  `;
+  grid.appendChild(card);
+});
+
+// Render mini charts
+setTimeout(() => {
+  projetos.forEach(p => {
+    const canvas = document.getElementById(`mini-${p.id}`);
+    if (!canvas) return;
+    const miniData = JSON.parse(JSON.stringify(p.chartData));
+    new Chart(canvas, {
+      type: p.chartType,
+      data: miniData,
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false }, tooltip: { enabled: false } },
+        scales: p.chartType === 'doughnut' ? {} : {
+          x: { display: false },
+          y: { display: false }
+        },
+        animation: { duration: 800 }
+      }
+    });
+  });
+}, 100);
+
+let activeChart = null;
+
+function openModal(id) {
+  const p = projetos.find(x => x.id === id);
+  document.getElementById('modal-title').textContent = p.title;
+  document.getElementById('modal-desc').textContent = p.desc;
+  document.getElementById('modal-kpis').innerHTML = p.kpis.map(k => `
+    <div class="modal-kpi">
+      <div class="modal-kpi-val">${k.val}</div>
+      <div class="modal-kpi-label">${k.label}</div>
+    </div>
+  `).join('');
+  document.getElementById('modal').classList.add('open');
+
+  if (activeChart) { activeChart.destroy(); activeChart = null; }
+  setTimeout(() => {
+    const canvas = document.getElementById('modal-canvas');
+    activeChart = new Chart(canvas, {
+      type: p.chartType,
+      data: JSON.parse(JSON.stringify(p.chartData)),
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { labels: { color: 'rgba(255,255,255,0.6)', font: { size: 12 } } }
+        },
+        scales: p.chartType === 'doughnut' ? {} : {
+          x: { ticks: { color: 'rgba(255,255,255,0.5)' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+          y: { ticks: { color: 'rgba(255,255,255,0.5)' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+        }
+      }
+    });
+  }, 50);
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  if (activeChart) { activeChart.destroy(); activeChart = null; }
+}
+
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+</script>
+</body>
+</html>
