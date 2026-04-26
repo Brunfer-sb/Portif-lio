@@ -139,6 +139,15 @@
   }
   .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
 
+  .hero-photo {
+    position: absolute; right: 6rem; bottom: 0;
+    width: 340px; height: 480px;
+    object-fit: cover; object-position: top center;
+    border-radius: 200px 200px 0 0;
+    opacity: 0.85;
+    animation: fadeUp 0.9s 0.3s ease both;
+  }
+
   .hero-stats {
     margin-top: 4rem; display: flex; gap: 3rem;
     animation: fadeUp 0.7s 0.4s ease both;
@@ -168,7 +177,12 @@
     font-weight: 800; color: var(--text-dark);
     line-height: 1.1;
   }
-  .sobre-grid {
+  .sobre-avatar {
+    width: 80px; height: 80px; border-radius: 50%;
+    object-fit: cover; object-position: top center;
+    border: 3px solid var(--accent);
+    margin-bottom: 1.5rem;
+  }
     display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
     margin-top: 3rem; align-items: start;
   }
@@ -359,6 +373,7 @@
 <section id="hero">
   <div class="hero-bg-grid"></div>
   <div class="hero-glow"></div>
+  <img src="foto.jpg" alt="Foto de perfil" class="hero-photo">
   <div class="hero-content">
     <div class="hero-tag">Disponível para Freelance</div>
     <h1 class="hero-title">
@@ -394,6 +409,7 @@
   <div class="section-label">Sobre mim</div>
   <div class="sobre-grid">
     <div class="sobre-text">
+      <img src="foto.jpg" alt="Foto de perfil" class="sobre-avatar">
       <h2 class="section-title">De operações ao negócio — com dados.</h2>
       <p style="margin-top:1.2rem">
         Tenho experiência prática como <strong>Analista Operacional</strong>, o que me deu visão do chão de fábrica: processos, gargalos, dados na prática. Agora estou direcionando essa vivência para o mundo de <strong>Business Intelligence e Análise de Negócios</strong>.
